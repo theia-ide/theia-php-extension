@@ -1,0 +1,53 @@
+/*
+ * Copyright (C) 2017 TypeFox and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+//import * as os from 'os';
+import * as path from 'path';
+// import * as glob from 'glob';
+import { injectable, inject } from "inversify";
+// import { DEBUG_MODE } from '@theia/core/lib/node';
+import { IConnection, BaseLanguageServerContribution } from "@theia/languages/lib/node";
+import { PHP_LANGUAGE_ID, PHP_LANGUAGE_NAME } from '../common';
+import { ILogger } from '@theia/core';
+
+// export type ConfigurationType = 'config_win' | 'config_mac' | 'config_linux';
+// export const configurations = new Map<typeof process.platform, ConfigurationType>();
+// configurations.set('darwin', 'config_mac');
+// configurations.set('win32', 'config_win');
+// configurations.set('linux', 'config_linux');
+
+@injectable()
+export class PHPContribution extends BaseLanguageServerContribution {
+
+    constructor(@inject(ILogger) private logger: ILogger) {
+        super();
+        logger.info("loading PHP contribution")
+    }
+
+    readonly id = PHP_LANGUAGE_ID;
+    readonly name = PHP_LANGUAGE_NAME;
+
+    start(clientConnection: IConnection): void {
+        const lsp = path.join(__dirname, '../../php-ls','vendor', 'felixfbecker', 'language-server', 'bin', 'php-language-server.php')
+        const command = 'php72';
+        const args: string[] = [
+            lsp
+        ];
+        this.logger.info("starting PHP language server :)")
+        this.logger.info(lsp);
+        
+        const serverConnection = this.createProcessStreamConnection(command, args);
+        // serverConnection.reader.onError(err => console.log(err));
+        this.forward(clientConnection, serverConnection);
+    }
+
+    protected onDidFailSpawnProcess(error: Error): void {
+        super.onDidFailSpawnProcess(error);
+        this.logger.error("Error starting php language server.");
+        this.logger.error("Please make sure it is installed on your system.");
+    }
+}

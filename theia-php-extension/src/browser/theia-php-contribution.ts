@@ -1,33 +1,31 @@
-import { injectable, inject } from "inversify";
-import { CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry, MessageService } from "@theia/core/lib/common";
-import { CommonMenus } from "@theia/core/lib/browser";
+/*
+ * Copyright (C) 2017 TypeFox and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ */
 
-export const TheiaPhpCommand = {
-    id: 'TheiaPhp.command',
-    label: "Shows a message"
-};
+import { injectable, inject } from "inversify";
+import { BaseLanguageClientContribution, Workspace, Languages, LanguageClientFactory } from '@theia/languages/lib/browser';
+import { PHP_LANGUAGE_ID, PHP_LANGUAGE_NAME } from '../common';
 
 @injectable()
-export class TheiaPhpCommandContribution implements CommandContribution {
+export class PHPClientContribution extends BaseLanguageClientContribution {
+
+    readonly id = PHP_LANGUAGE_ID;
+    readonly name = PHP_LANGUAGE_NAME;
 
     constructor(
-        @inject(MessageService) private readonly messageService: MessageService,
-    ) { }
-
-    registerCommands(registry: CommandRegistry): void {
-        registry.registerCommand(TheiaPhpCommand, {
-            execute: () => this.messageService.info('Hello World!')
-        });
+        @inject(Workspace) protected readonly workspace: Workspace,
+        @inject(Languages) protected readonly languages: Languages,
+        @inject(LanguageClientFactory) protected readonly languageClientFactory: LanguageClientFactory
+    ) {
+        super(workspace, languages, languageClientFactory);
     }
-}
 
-@injectable()
-export class TheiaPhpMenuContribution implements MenuContribution {
-
-    registerMenus(menus: MenuModelRegistry): void {
-        menus.registerMenuAction(CommonMenus.EDIT_FIND, {
-            commandId: TheiaPhpCommand.id,
-            label: 'Say Hello'
-        });
+    protected get globPatterns() {
+        return [
+            '**/*.php'
+        ];
     }
 }

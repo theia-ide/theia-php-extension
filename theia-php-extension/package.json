@@ -23,7 +23,8 @@
   },
   "theiaExtensions": [
     {
-      "frontend": "lib/browser/theia-php-frontend-module"
+      "frontend": "lib/browser/theia-php-frontend-module",
+      "backend": "lib/node/theia-php-backend-module"
     }
   ]
 }

@@ -2,18 +2,14 @@
  * Generated using theia-extension-generator
  */
 
-import { TheiaPhpCommandContribution, TheiaPhpMenuContribution } from './theia-php-contribution';
-import {
-    CommandContribution,
-    MenuContribution
-} from "@theia/core/lib/common";
-
+import { PHPClientContribution } from './theia-php-contribution';
+import { LanguageClientContribution } from "@theia/languages/lib/browser";
 import { ContainerModule } from "inversify";
 
 export default new ContainerModule(bind => {
     // add your contribution bindings here
     
-    bind(CommandContribution).to(TheiaPhpCommandContribution);
-    bind(MenuContribution).to(TheiaPhpMenuContribution);
-    
+    bind(PHPClientContribution).toSelf().inSingletonScope();
+    bind(LanguageClientContribution).toDynamicValue(ctx => ctx.container.get(PHPClientContribution));
+
 });

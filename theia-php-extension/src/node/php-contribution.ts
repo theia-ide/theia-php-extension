@@ -8,11 +8,10 @@
 //import * as os from 'os';
 import * as path from 'path';
 // import * as glob from 'glob';
-import { injectable, inject } from "inversify";
+import { injectable } from "inversify";
 // import { DEBUG_MODE } from '@theia/core/lib/node';
 import { IConnection, BaseLanguageServerContribution } from "@theia/languages/lib/node";
 import { PHP_LANGUAGE_ID, PHP_LANGUAGE_NAME } from '../common';
-import { ILogger } from '@theia/core';
 
 // export type ConfigurationType = 'config_win' | 'config_mac' | 'config_linux';
 // export const configurations = new Map<typeof process.platform, ConfigurationType>();
@@ -22,11 +21,6 @@ import { ILogger } from '@theia/core';
 
 @injectable()
 export class PHPContribution extends BaseLanguageServerContribution {
-
-    constructor(@inject(ILogger) private logger: ILogger) {
-        super();
-        logger.info("loading PHP contribution")
-    }
 
     readonly id = PHP_LANGUAGE_ID;
     readonly name = PHP_LANGUAGE_NAME;

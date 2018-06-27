@@ -1,0 +1,7 @@
+FROM debian:stable
+
+RUN apt-get update && apt-get install -y php wget
+
+# install 'composer.phar' to /usr/bin/
+COPY theia-php-extension/php-ls/install-composer.sh /usr/bin/install-composer.sh
+RUN cd /usr/bin/ && ./install-composer.sh 

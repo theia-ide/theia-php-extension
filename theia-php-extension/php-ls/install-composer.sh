@@ -13,7 +13,7 @@ then
     exit 1
 fi
 
-php72 composer-setup.php --quiet
+php composer-setup.php --quiet
 RESULT=$?
-# rm composer-setup.php
+rm composer-setup.php
 exit $RESULT

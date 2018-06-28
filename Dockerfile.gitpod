@@ -1,6 +1,28 @@
-FROM debian:stable
+FROM debian:testing
 
-RUN apt-get update && apt-get install -y php wget
+RUN apt-get update && apt-get install -y curl gnupg \
+    && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
+
+# https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+
+# https://yarnpkg.com/lang/en/docs/install/#debian-stable
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update && apt-get install -y \ 
+        yarn \
+        nodejs \
+        build-essential \
+        php \
+        php-zip \
+        wget \
+        zip \
+        make \
+        gcc \
+        g++ \
+        python \
+    && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
 
 # install 'composer.phar' to /usr/bin/
 COPY theia-php-extension/php-ls/install-composer.sh /usr/bin/install-composer.sh

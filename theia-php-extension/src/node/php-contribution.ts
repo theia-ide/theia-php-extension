@@ -27,7 +27,7 @@ export class PHPContribution extends BaseLanguageServerContribution {
 
     start(clientConnection: IConnection): void {
         const lsp = path.join(__dirname, '../../php-ls','vendor', 'felixfbecker', 'language-server', 'bin', 'php-language-server.php')
-        const command = 'php72';
+        const command = 'php';
         const args: string[] = [
             lsp
         ];

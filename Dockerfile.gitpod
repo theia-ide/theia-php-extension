@@ -1,6 +1,11 @@
 FROM debian:stable
 
-RUN apt-get update && apt-get install -y php wget
+RUN apt-get update && apt-get install -y \ 
+    php \
+    php-zip \
+    php-iconv \
+    wget \
+    zip
 
 # install 'composer.phar' to /usr/bin/
 COPY theia-php-extension/php-ls/install-composer.sh /usr/bin/install-composer.sh

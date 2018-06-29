@@ -15,7 +15,7 @@
     "@theia/markers": "next",
     "@theia/monaco": "next",
     "@theia/typescript": "next",
-    "theia-php-extension": "0.0.0"
+    "@theia/php": "0.0.0"
   },
   "devDependencies": {
     "@theia/cli": "next"

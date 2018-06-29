@@ -1,5 +1,5 @@
 {
-  "name": "theia-php-extension",
+  "name": "@theia/php",
   "keywords": [
     "theia-extension"
   ],

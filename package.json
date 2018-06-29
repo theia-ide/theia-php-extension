@@ -9,6 +9,6 @@
     "lerna": "2.4.0"
   },
   "workspaces": [
-    "theia-php-extension", "browser-app", "electron-app"
+    "php", "browser-app", "electron-app"
   ]
 }

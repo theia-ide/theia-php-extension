@@ -16,7 +16,7 @@
     "typescript": "latest"
   },
   "scripts": {
-    "prepare": "cd php-ls && composer.phar install && cd .. && yarn run clean && yarn run build",
+    "prepare": "yarn run clean && yarn run build",
     "clean": "rimraf lib",
     "build": "tsc",
     "watch": "tsc -w"

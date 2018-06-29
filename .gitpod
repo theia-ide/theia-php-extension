@@ -3,4 +3,4 @@ ports:
   - port: 3000
     protocol: "http"
 tasks:
-  - command: "yarn"
+  - command: "(cd php && composer install) && yarn install"

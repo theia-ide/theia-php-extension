@@ -5,19 +5,6 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-/**
- // from monaco.contributions.ts
-
- registerLanguage({
-	id: 'php',
-	extensions: ['.php', '.php4', '.php5', '.phtml', '.ctp'],
-	aliases: ['PHP', 'php'],
-	mimetypes: ['application/x-php'],
-	module: './php'
-});
-
- */
-
 export const PHP_SCHEME = 'php';
 export const PHP_LANGUAGE_ID = 'php';
 export const PHP_LANGUAGE_NAME = 'PHP';

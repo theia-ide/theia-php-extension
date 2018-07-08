@@ -5,11 +5,13 @@
   ],
   "version": "0.0.0",
   "files": [
+    "data",
     "lib",
     "src"
   ],
   "dependencies": {
-    "@theia/core": "next"
+    "@theia/core": "next",
+    "@theia/monaco": "next"
   },
   "devDependencies": {
     "rimraf": "latest",

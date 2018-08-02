@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "prepare": "lerna run prepare",
+    "postinstall": "lerna run postinstall",
     "rebuild:browser": "theia rebuild:browser",
     "rebuild:electron": "theia rebuild:electron"
   },

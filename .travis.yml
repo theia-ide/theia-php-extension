@@ -1,3 +1,4 @@
+dist: xenial
 sudo: required
 language: node_js
 node_js: '8'
@@ -10,6 +11,8 @@ cache:
 branches:
   only:
   - master
+before_install:
+- sudo apt-get update && sudo apt-get install -y php php-zip composer
 install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.2.1
 - export PATH=$HOME/.yarn/bin:$PATH ;
@@ -26,7 +29,7 @@ before_deploy:
 - printf "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}\n" >> ~/.npmrc
 deploy:
   provider: script
-  script: yarn run publish:next
+  script: (cd php; yarn run publish:next)
   skip_cleanup: true
   on:
     branch: master

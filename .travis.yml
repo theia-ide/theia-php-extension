@@ -29,7 +29,7 @@ before_deploy:
 - printf "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}\n" >> ~/.npmrc
 deploy:
   provider: script
-  script: (cd php; yarn run publish:next)
+  script: yarn run publish:next
   skip_cleanup: true
   on:
     branch: master

@@ -14,18 +14,19 @@
     "@theia/monaco": "next"
   },
   "devDependencies": {
+    "lerna": "2.4.0",
     "rimraf": "latest",
-    "typescript": "latest",
-    "lerna": "2.4.0"
+    "typescript": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build",
     "postinstall": "composer install",
     "clean": "rimraf lib",
     "build": "tsc",
-    "watch": "tsc -w",
-    "publish:latest": "lerna publish --registry=https://registry.npmjs.org/ --exact --skip-git",
-	"publish:next": "lerna publish --registry=https://registry.npmjs.org/ --exact --canary=next --npm-tag=next --force-publish --skip-git --yes"
+    "watch": "tsc -w"
   },
   "theiaExtensions": [
     {

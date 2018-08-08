@@ -9,7 +9,7 @@
     "/lib",
     "/src",
     "/composer.json",
-    "/compoer.lock"
+    "/composer.lock"
   ],
   "dependencies": {
     "@theia/core": "next",

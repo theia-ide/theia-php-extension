@@ -83,7 +83,7 @@ export class PhpGrammarContribution implements LanguageGrammarDefinitionContribu
         monaco.languages.setLanguageConfiguration(PHP_LANGUAGE_ID, this.config);
 
         const phpGrammar = require('../../data/php.tmLanguage.json');
-        registry.registerTextMateGrammarScope('source.php', {
+        registry.registerTextmateGrammarScope('source.php', {
             async getGrammarDefinition() {
                 return {
                     format: 'json',

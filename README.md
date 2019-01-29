@@ -1,3 +1,5 @@
+![travis-master](https://travis-ci.org/theia-ide/theia-php-extension.svg?branch=master)
+
 # Hello World Extension Example
 The example of how to build the Theia-based applications with the theia-php-extension.
 

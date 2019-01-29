@@ -1,5 +1,7 @@
 [![Gitpod - Code Now](https://img.shields.io/badge/Gitpod-code%20now-blue.svg?longCache=true)](https://gitpod.io#https://github.com/theia-ide/theia-php-extension)
 [![travis-master](https://travis-ci.org/theia-ide/theia-php-extension.svg?branch=master)](https://travis-ci.org/theia-ide/theia-php-extension/branches)
+[![npm](https://img.shields.io/npm/v/@theia/php.svg)](https://www.npmjs.com/package/@theia/php)
+	
 
 # Hello World Extension Example
 The example of how to build the Theia-based applications with the theia-php-extension.

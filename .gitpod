@@ -1,4 +1,3 @@
-image: docker.io/meysholdt/theia-php-extension-gpws:v6
 ports:
   - port: 3000
     protocol: "http"

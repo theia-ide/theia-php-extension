@@ -12,6 +12,9 @@ import { injectable } from "inversify";
 // import { DEBUG_MODE } from '@theia/core/lib/node';
 import { IConnection, BaseLanguageServerContribution } from "@theia/languages/lib/node";
 import { PHP_LANGUAGE_ID, PHP_LANGUAGE_NAME } from '../common';
+import { parseArgs } from '@theia/process/lib/node/utils';
+import { SpawnOptions } from 'child_process';
+import { ProcessErrorEvent } from '@theia/process/lib/node/process';
 
 // export type ConfigurationType = 'config_win' | 'config_mac' | 'config_linux';
 // export const configurations = new Map<typeof process.platform, ConfigurationType>();
@@ -25,21 +28,33 @@ export class PHPContribution extends BaseLanguageServerContribution {
     readonly id = PHP_LANGUAGE_ID;
     readonly name = PHP_LANGUAGE_NAME;
 
-    start(clientConnection: IConnection): void {
+    async start(clientConnection: IConnection): Promise<void> {
         const lsp = path.join(__dirname, '../..','vendor', 'felixfbecker', 'language-server', 'bin', 'php-language-server.php')
-        const command = 'php';
-        const args: string[] = [
+        let command = 'php';
+        let args: string[] = [
             lsp
         ];
+
+        const phpLsCommand = process.env.PHP_LS_COMMAND;
+        if (phpLsCommand) {
+            command = phpLsCommand;
+            args = parseArgs(process.env.PHP_LS_ARGS || '');
+        }
+
+
         console.info("starting PHP language server :)")
         console.info(lsp);
-        
-        const serverConnection = this.createProcessStreamConnection(command, args);
+
+        const serverConnection = await this.createProcessStreamConnectionAsync(command, args, this.getSpawnOptions());
         // serverConnection.reader.onError(err => console.log(err));
         this.forward(clientConnection, serverConnection);
     }
 
-    protected onDidFailSpawnProcess(error: Error): void {
+    protected getSpawnOptions(): SpawnOptions | undefined {
+        return undefined;
+    }
+
+    protected onDidFailSpawnProcess(error: ProcessErrorEvent): void {
         super.onDidFailSpawnProcess(error);
         console.error("Error starting php language server.");
         console.error("Please make sure it is installed on your system.");

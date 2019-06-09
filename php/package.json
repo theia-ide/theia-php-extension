@@ -18,6 +18,7 @@
     "/vendor/phpdocumentor",
     "/vendor/psr",
     "/vendor/sabre",
+    "/vendor/symfony",
     "/vendor/webmozart"
   ],
   "dependencies": {

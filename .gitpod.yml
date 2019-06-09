@@ -1,5 +1,8 @@
 ports:
   - port: 3000
 tasks:
-  - init: "yarn install && yarn rebuild:browser"
+  - init: |
+        yarn install
+        yarn rebuild:browser
+        (cd php; composer install --prefer-dist --no-interaction --optimize-autoloader)
     command: "cd browser-app; yarn start --hostname 0.0.0.0"

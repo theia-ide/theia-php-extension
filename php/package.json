@@ -9,7 +9,16 @@
     "/lib",
     "/src",
     "/composer.json",
-    "/composer.lock"
+    "/composer.lock",
+    "/vendor/autoload.php",
+    "/vendor/composer",
+    "/vendor/felixfbecker",
+    "/vendor/microsoft",
+    "/vendor/netresearch",
+    "/vendor/phpdocumentor",
+    "/vendor/psr",
+    "/vendor/sabre",
+    "/vendor/webmozart"
   ],
   "dependencies": {
     "@theia/core": "next",
@@ -25,7 +34,6 @@
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build",
-    "postinstall": "composer install",
     "clean": "rimraf lib",
     "build": "tsc",
     "watch": "tsc -w"

@@ -18,6 +18,7 @@ install:
 - export PATH=$HOME/.yarn/bin:$PATH ;
 script:
 - yarn
+- (cd php; composer install --prefer-dist --no-interaction --optimize-autoloader)
 notifications:
   webhooks:
     urls:

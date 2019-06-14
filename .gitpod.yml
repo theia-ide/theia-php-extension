@@ -1,3 +1,4 @@
+image: gitpod/workspace-full-vnc:latest
 ports:
   - port: 3000
 tasks:

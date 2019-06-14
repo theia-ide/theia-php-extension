@@ -1,4 +1,5 @@
-image: gitpod/workspace-full-vnc:latest
+image:
+  file: .gitpod.dockerfile
 ports:
   - port: 3000
 tasks:

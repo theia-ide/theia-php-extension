@@ -15,13 +15,14 @@
     "@theia/markers": "next",
     "@theia/monaco": "next",
     "@theia/typescript": "next",
+    "@theia/textmate-grammars": "next",
     "@theia/php": "0.0.0"
   },
   "devDependencies": {
     "@theia/cli": "next"
   },
   "scripts": {
-    "prepare": "theia build",    
+    "prepare": "theia build",
     "start": "theia start",
     "watch": "theia build --watch"
   },
